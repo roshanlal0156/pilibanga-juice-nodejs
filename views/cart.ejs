@@ -1,0 +1,35 @@
+<%- include('partials/header'); -%>
+
+<link rel="stylesheet" href="/styles/components/cart.css" />
+
+<div class="cart container">
+  <table class="cart__table">
+    <tbody class="cart__table-body"></tbody>
+  </table>
+
+  <div class="cart__calculation-wrapper">
+    <hr class="cart__hr" />
+    <div class="cart__calculation">
+      <span>Sub Total</span>
+      <span class="cart__sub-total">123</span>
+    </div>
+    <div class="cart__calculation">
+      <span>Delivery Charges</span>
+      <span class="cart__delivery-charges">20</span>
+    </div>
+    <hr class="cart__hr" />
+    <div class="cart__calculation">
+      <span>Total</span>
+      <span class="cart__total">123</span>
+    </div>
+  </div>
+
+  <div class="cart__order">
+    <button class="btn cart__order-btn">order</button>
+
+    <div class="cart__order-minimum"><a>Minimum total to place order : 100 ₹</a></div>
+
+    <div class="cart__order-empty"><strong>-- No item added to cart --</strong></div>
+  </div>
+</div>
+<script src="/js/cart.js"></script>

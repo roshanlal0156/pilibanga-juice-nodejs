@@ -1,0 +1,83 @@
+table, tbody, tr {
+    width: 100%;
+}
+.item__qty {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.btn__cart-qty {
+    border: none;
+    font-size: var(--size-sm);
+    border-radius: 50%;
+}
+.input__qty {
+    text-align: center;
+    width: 2rem;
+    border: none;
+
+    
+}
+
+/* Hide the default spinners for inputs with class "no-spinners" */
+input.input__qty[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+    outline: none; /* Remove border highlighting */
+}
+input.input__qty[type=number]::-webkit-inner-spin-button,
+input.input__qty[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* WebKit browsers like Safari and Chrome */
+    margin: 0; /* Remove the margin */
+}
+
+
+td {
+    text-align: center;
+}
+
+.item__delete-icon {
+    color: var(--clr-rose);
+}
+
+.cart__hr {
+    margin: 1rem 0;
+    border-color: var(--clr-light);
+}
+
+.cart__calculation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart__calculation-wrapper {
+    display: none;
+}
+
+.cart__order-btn {
+    border: none;
+}
+
+.cart__order-btn {
+    display: block;
+    margin: 3rem auto;
+    display: none;
+}
+
+.cart__order-minimum {
+    text-align: center;
+    margin: 3rem 0;
+    font-size: var(--size-lg);
+    font-weight: bolder;
+    color: var(--clr-rose);
+    display: none;
+}
+
+.cart__order-empty {
+    text-align: center;
+    margin: 3rem 0;
+    display: none;
+}
+
+.cart__order-empty > strong {
+    font-size: var(--size-lg);
+}
