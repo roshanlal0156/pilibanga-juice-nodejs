@@ -45,13 +45,15 @@ main {
 }
 
 .menu__cart-icon {
-  display: flex;
+  display: 'none';
   justify-content: center;
   background-color: var(--clr-light);
   color: var(--clr-rose);
   border-radius: 50%;
   font-size: var(--size-2xl);
 }
+
+
 
 .menu__selected-items-count {
   display: none;

@@ -1,21 +1,7 @@
-const items = [
-  {
-    name: "sugarcane",
-    price: 20,
-  },
-  {
-    name: "bael",
-    price: 20,
-  },
-  {
-    name: "banana",
-    price: 20,
-  },
-  {
-    name: "papaya",
-    price: 20,
-  },
-];
+var cartData = JSON.parse(document.currentScript.getAttribute('data-cart'));
+console.log(cartData);
+
+const items = cartData;
 
 loadingCartCalculations = () => {
   const cartCalculationWrapper = document.querySelector(
@@ -90,6 +76,7 @@ loadingCartItems = (items) => {
     // second td
     let td2 = document.createElement("td");
     td2.classList.add("item__name");
+    td2.setAttribute('product-id', element._id);
     td2.innerHTML = element.name[0].toUpperCase() + element.name.slice(1);
 
     // third td
