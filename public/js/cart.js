@@ -140,3 +140,35 @@ loadingCartItems = (items) => {
 };
 
 loadingCartItems(items);
+
+const cartOrderBtn = document.querySelector('.cart__order-btn');
+
+cartOrderBtn.addEventListener('click', async (e) => {
+  let payload = [];
+  for (var i = 0; i < cartTableBody.rows.length; i++) {
+    var productNameCells = cartTableBody.rows[i].getElementsByClassName('item__name');
+    var productQtyCells = cartTableBody.rows[i].getElementsByClassName('input__qty');
+
+    payload.push({
+      "product_id" : productNameCells[0].getAttribute('product-id'),
+      "qty" : productQtyCells[0].value,
+    })
+  }
+
+  try {
+    const res = await fetch("/order", {
+      method: "POST",
+      body: JSON.stringify({ products : payload }),
+      headers: { "content-type": "application/json" },
+    });
+    const data = await res.json();
+    if (data.errors) {
+      // TODO:: handle erros
+    }
+    if (data.order) {
+      location.assign("/order");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+})
