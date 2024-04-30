@@ -3,6 +3,8 @@ const Product = require("../models/Product");
 
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const constants = require("../utils/constants");
+const { default: mongoose } = require("mongoose");
 
 const ObjectId = require("mongodb").ObjectId;
 
@@ -58,13 +60,50 @@ module.exports.place_order = async (req, res) => {
         sub_total: subTotal,
         delivery_charges: deliveryCharges,
         total: total,
+        status: constants.ORDER_STATUSES.PLACED,
       });
 
       res.status(201).json({ order: order });
     } catch (err) {
       console.log(err);
-    //   const errors = handleErrors(err); TODO:: error handler
+      //   const errors = handleErrors(err); TODO:: error handler
       res.status(400).json({ err });
     }
   });
+};
+
+module.exports.get_order = (req, res) => {
+  const token = req.cookies.jwt;
+  
+  try {
+    let user = null;
+    jwt.verify(token, process.env.SECRET_KEY, async (err, decodedToken) => {
+      console.log(decodedToken.id);
+      const userId = mongoose.Types.ObjectId.createFromHexString(decodedToken.id);
+      const orders = await Order.aggregate([
+        {
+          $match: { user_id: userId },
+        },
+        {
+          $project: {
+            _id: 0,
+            user_id: 1,
+            products: 1,
+            sub_total: 1,
+            delivery_charges: 1,
+            total: 1,
+            status: 1,
+            createdAt: 1,
+            order_id: 1,
+          },
+        },
+      ]).sort({ createdAt: -1 });
+      
+      res.status(201).json({ orders: orders });
+    });
+  } catch (err) {
+    console.log(err);
+    //   const errors = handleErrors(err); TODO:: error handler
+    res.status(400).json({ err });
+  }
 };

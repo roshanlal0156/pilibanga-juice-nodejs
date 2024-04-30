@@ -15,5 +15,6 @@ router.get('/get-cart', requireAuth, cartController.get_cart);
 
 //orders
 router.post('/order', requireAuth, orderController.place_order);
+router.get('/get-order', requireAuth, orderController.get_order);
 
 module.exports = router;
